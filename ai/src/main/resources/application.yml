@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: ai-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ai
+    username:
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 19092
+eureka:
+  client:
+    service-url:
+      # 유레카 서버의 주소 설정
+      defaultZone: http://localhost:19090/eureka/
+

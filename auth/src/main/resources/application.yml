@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: auth-service
+server:
+  port: 19093
+eureka:
+  client:
+    service-url:
+      # 유레카 서버의 주소 설정
+      defaultZone: http://localhost:19090/eureka/
