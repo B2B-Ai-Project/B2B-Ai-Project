@@ -1,6 +1,17 @@
 spring:
   application:
     name: product-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ai
+    username:
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 server:
   port: 19096
 eureka:
