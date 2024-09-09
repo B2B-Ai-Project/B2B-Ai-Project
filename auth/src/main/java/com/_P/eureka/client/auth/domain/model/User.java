@@ -2,29 +2,34 @@ package com._P.eureka.client.auth.domain.model;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Email;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
+
+
+
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
+@Getter
 @Entity
-@Data
-@NoArgsConstructor
 @Table(name = "p_user")
 public class User {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name="UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name="user_id", updatable = false, nullable = false)
-    private UUID userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private long userId;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String username;
 
     // unique 제약조건 == 슬랙아이디
-    @Column(unique=true, nullable = false)
+    @Email
+    @Column(unique=true)
     private String email;
 
     @Column(unique = true, nullable = false)
@@ -40,7 +45,14 @@ public class User {
     @Column(name="is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted;
 
-
-
-
+    // user 객체 변환 메서드
+    public static User create(String username,String email,String phone,String password,UserRoleEnum role){
+        return User.builder()
+                .username(username)
+                .email(email)
+                .phone(phone)
+                .password(password)
+                .role(role)
+                .build();
+    }
 }
