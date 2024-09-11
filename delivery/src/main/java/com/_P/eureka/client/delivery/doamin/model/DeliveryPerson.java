@@ -1,5 +1,7 @@
 package com._P.eureka.client.delivery.doamin.model;
 
+import com._P.eureka.client.delivery.doamin.common.DeliveryPersonRoleEnum;
+import com._P.eureka.client.delivery.doamin.common.TimeStamped;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "p_delivery_person")
-public class DeliveryPerson { // 배송 담당자
+public class DeliveryPerson extends TimeStamped { // 배송 담당자
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID deliveryPersonId;
@@ -21,20 +23,11 @@ public class DeliveryPerson { // 배송 담당자
   private String email; // slackId
 
   @Column(nullable = false)
-  @Enumerated(value=EnumType.STRING)
+  @Enumerated(value = EnumType.STRING)
   private DeliveryPersonRoleEnum role;
 
   @Column(nullable = false)
   private boolean is_waiting = true; // 대기중인 배송 담당자
 
-  @Column(nullable = false)
-  private boolean is_deleted = false;
-
-  public void updateHubAndRole(String hubId, DeliveryPersonRoleEnum role) {
-    this.hubId = hubId;
-    this.role = role;
-  }
-
-
-
 }
+

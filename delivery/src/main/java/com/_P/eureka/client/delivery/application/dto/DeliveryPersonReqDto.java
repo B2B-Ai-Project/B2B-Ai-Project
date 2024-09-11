@@ -1,7 +1,6 @@
 package com._P.eureka.client.delivery.application.dto;
 
-import com._P.eureka.client.delivery.doamin.model.DeliveryPerson;
-import com._P.eureka.client.delivery.doamin.model.DeliveryPersonRoleEnum;
+import com._P.eureka.client.delivery.doamin.common.DeliveryPersonRoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
