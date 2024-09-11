@@ -4,12 +4,8 @@ package com._P.eureka.client.auth.domain.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
-
-
-
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -22,7 +18,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private long userId;
+    private UUID userId;
 
     @Column(unique = true, nullable = false)
     private String username;

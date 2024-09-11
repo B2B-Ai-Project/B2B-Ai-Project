@@ -2,6 +2,7 @@ package com._P.eureka.client.auth.domain.model;
 
 
 public enum UserRoleEnum {
+  HUB_DELIVERY;
 
     COMPANY(Authority.COMPANY), // 허브 소속 업체 권한
     DELIVERY_PERSON(Authority.DELIVERY_PERSON), // 배달담당자 권한

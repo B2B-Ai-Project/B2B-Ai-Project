@@ -30,6 +30,10 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	// DB
 	runtimeOnly 'org.postgresql:postgresql'
+
+	// OpenFeign 의존성
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
 }
 
 dependencyManagement {

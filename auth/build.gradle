@@ -28,6 +28,8 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	// OpenFeign 의존성
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
 	// DB
 	runtimeOnly 'org.postgresql:postgresql'

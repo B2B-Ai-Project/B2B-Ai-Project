@@ -35,6 +35,10 @@ dependencies {
 	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	// OpenFeign 의존성
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	// Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 dependencyManagement {
