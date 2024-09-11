@@ -1,7 +1,7 @@
 package com._P.eureka.client.object.product;
 
 import com._P.eureka.client.object.company.Company;
-import com._P.eureka.client.object.hub.Hub;
+import com._P.eureka.client.object.hub.entity.Hub;
 import jakarta.persistence.*;
 import lombok.*;
 

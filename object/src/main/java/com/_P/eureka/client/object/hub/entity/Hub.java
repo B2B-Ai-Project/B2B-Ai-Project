@@ -1,5 +1,6 @@
-package com._P.eureka.client.object.hub;
+package com._P.eureka.client.object.hub.entity;
 
+import com._P.eureka.client.object.hub.dto.HubUpdateDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,4 +28,15 @@ public class Hub {
 
     @Column(nullable = false)
     private boolean is_deleted = false;
+
+    public void delete() {
+        this.is_deleted = true;
+    }
+
+    public void update(HubUpdateDto requestDto) {
+        this.name = requestDto.getName();
+        this.address = requestDto.getAddress();
+        this.latitude = requestDto.getLatitude();
+        this.longitude = requestDto.getLongitude();
+    }
 }
