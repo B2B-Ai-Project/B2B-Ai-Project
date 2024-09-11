@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="060cdee2-9c80-4875-8e98-67c3677ce5f2" name="Changes" comment="#6-feat: DeliveryPerson @AuthenticationPrincipal 주석처리">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4dfbdbc3-37ed-4e79-b3d8-f09c1b234229.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4dfbdbc3-37ed-4e79-b3d8-f09c1b234229.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="060cdee2-9c80-4875-8e98-67c3677ce5f2" name="Changes" comment="#7-feat: DeliveryPerson Search 구현">
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/auth/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +55,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -88,9 +96,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "deliveryPerson__api__#7__mad-cost",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/tjqud/Desktop/project23/B2B-Ai-Project",
+    "last_opened_file_path": "C:/Users/tjqud/Desktop/ip10/Backend/demo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -201,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726045586672</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="#7-feat: DeliveryPerson Search 구현">
+      <option name="closed" value="true" />
+      <created>1726073917306</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726073917306</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +224,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="#6-feat: DeliveryPerson @AuthenticationPrincipal 주석처리" />
-    <option name="LAST_COMMIT_MESSAGE" value="#6-feat: DeliveryPerson @AuthenticationPrincipal 주석처리" />
+    <MESSAGE value="#7-feat: DeliveryPerson Search 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="#7-feat: DeliveryPerson Search 구현" />
   </component>
 </project>
