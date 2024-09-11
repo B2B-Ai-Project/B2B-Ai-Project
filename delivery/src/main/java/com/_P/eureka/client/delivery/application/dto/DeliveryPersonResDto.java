@@ -27,7 +27,16 @@ public class DeliveryPersonResDto {
             .email(user.getEmail())
             .role(String.valueOf(user.getRole()))
             .is_waiting(user.is_waiting())
-            .is_deleted(user.is_deleted())
             .build();
   }
+
+  public DeliveryPersonResDto(DeliveryPerson deliveryPerson) {
+    this.deliveryPersonId = deliveryPerson.getDeliveryPersonId();
+    this.hubId = deliveryPerson.getHubId();
+    this.email = deliveryPerson.getEmail();
+    this.role = String.valueOf(deliveryPerson.getRole());
+    this.is_waiting = deliveryPerson.is_waiting();
+    this.is_deleted = deliveryPerson.is_deleted();
+  }
+
 }

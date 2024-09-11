@@ -1,5 +1,6 @@
 package com._P.eureka.client.delivery.doamin.model;
 
+import com._P.eureka.client.delivery.doamin.common.DeliveryRoleEnum;
 import jakarta.persistence.*;
 import lombok.*;
 

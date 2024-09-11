@@ -1,4 +1,4 @@
-package com._P.eureka.client.delivery.doamin.model;
+package com._P.eureka.client.delivery.doamin.common;
 
 import lombok.Getter;
 

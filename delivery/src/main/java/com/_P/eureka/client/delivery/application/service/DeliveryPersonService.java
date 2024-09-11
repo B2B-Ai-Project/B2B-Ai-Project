@@ -4,9 +4,13 @@ import com._P.eureka.client.delivery.application.dto.DeliveryPersonResDto;
 import com._P.eureka.client.delivery.client.AuthClient;
 import com._P.eureka.client.delivery.client.HubClient;
 import com._P.eureka.client.delivery.doamin.model.DeliveryPerson;
-import com._P.eureka.client.delivery.doamin.model.DeliveryPersonRoleEnum;
+import com._P.eureka.client.delivery.doamin.common.DeliveryPersonRoleEnum;
 import com._P.eureka.client.delivery.doamin.repository.DeliveryPersonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +36,6 @@ public class DeliveryPersonService {
                     .email(email) // authClient로 받은 email 설정
                     .role(DeliveryPersonRoleEnum.HUB_DELIVERY) // 기본 역할을 HUB_DELIVERY로 설정
                     .is_waiting(true) // 대기 상태로 설정
-                    .is_deleted(false) // 삭제되지 않은 상태로 설정
                     .build()
     );
 
@@ -67,4 +70,13 @@ public class DeliveryPersonService {
 //    return DeliveryPersonResDto.fromEntity(deliveryPersonRepository.save(user));
 //  }
 
+  public Page<DeliveryPersonResDto> search(int page, int size, String sortBy, boolean isAsc) {
+    Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC; // 오름차순 or 내림차순
+    Sort sort = Sort.by(direction, sortBy); // 정렬 방향으로 Sort 객체 생성
+    Pageable pageable = PageRequest.of(page, size, sort);
+
+    Page<DeliveryPerson> deliveryPersonPage = deliveryPersonRepository.findAll(pageable);
+
+    return deliveryPersonPage.map(DeliveryPersonResDto::new);
+  }
 }
