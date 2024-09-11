@@ -1,5 +1,6 @@
 package com._P.eureka.client.object.hub.entity;
 
+
 import com._P.eureka.client.object.hub.dto.HubUpdateDto;
 import jakarta.persistence.*;
 import lombok.*;

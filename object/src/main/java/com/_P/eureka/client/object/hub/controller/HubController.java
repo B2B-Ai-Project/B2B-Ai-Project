@@ -9,8 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 
 @RequiredArgsConstructor
 @RestController
@@ -42,13 +41,13 @@ public class HubController {
 
     // ## 마스터 관리자만 가능
     @PostMapping
-    public String create(HubCreateDto requestDto){
+    public String create(@RequestBody HubCreateDto requestDto){
 
         return hubService.create(requestDto);
     }
 
     @PutMapping("{hub_id}")
-    public HubResponseDto update(HubUpdateDto requestDto, @PathVariable (name = "hub_id") String hubId){
+    public HubResponseDto update(@RequestBody HubUpdateDto requestDto, @PathVariable (name = "hub_id") String hubId){
 
         return hubService.update(requestDto,hubId);
     }

@@ -6,12 +6,10 @@ import com._P.eureka.client.object.hub.dto.HubCreateDto;
 import com._P.eureka.client.object.hub.dto.HubResponseDto;
 import com._P.eureka.client.object.hub.dto.HubUpdateDto;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 @Service
@@ -50,6 +48,9 @@ public class HubService {
         if(checkAddressHub.isPresent()){
             throw new IllegalArgumentException("이미 존재하는 주소입니다.");
         }
+
+        hubRepository.save(requestDto.toEntity());
+
         return "생성 완료";
     }
 
