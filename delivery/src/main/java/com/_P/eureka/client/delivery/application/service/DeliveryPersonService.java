@@ -1,6 +1,5 @@
 package com._P.eureka.client.delivery.application.service;
 
-import com._P.eureka.client.delivery.application.dto.DeliveryPersonDto;
 import com._P.eureka.client.delivery.application.dto.DeliveryPersonResDto;
 import com._P.eureka.client.delivery.client.AuthClient;
 import com._P.eureka.client.delivery.client.HubClient;

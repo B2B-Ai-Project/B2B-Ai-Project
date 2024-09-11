@@ -40,16 +40,10 @@ public class DeliveryPersonController {
           @PathVariable UUID hubId,
           @AuthenticationPrincipal
           CustomUserDetails userDetails
-  )
-  {
+  ) {
     // HubId 를 받아와서 배송 담당자에서 HubId 부여 및 권한 변경
     return deliveryPersonService.update(hubId, userDetails);
   }
-
-
-
-
-
 
 
 }

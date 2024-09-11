@@ -1,12 +1,8 @@
 package com._P.eureka.client.auth.presentation.controller;
 
 import com._P.eureka.client.auth.application.service.UserService;
-import feign.Body;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.UUID;
 
 @RestController
