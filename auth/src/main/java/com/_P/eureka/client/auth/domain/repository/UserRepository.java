@@ -1,6 +1,10 @@
 package com._P.eureka.client.auth.domain.repository;
 
+import com._P.eureka.client.auth.domain.model.User;
 import com._P.eureka.client.auth.infrastructure.repository.JpaUserRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class UserRepository extends JpaUserRepository {
+import java.util.UUID;
+
+public interface UserRepository extends JpaRepository<User, UUID> {
 }
