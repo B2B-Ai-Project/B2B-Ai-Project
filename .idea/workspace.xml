@@ -5,12 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="060cdee2-9c80-4875-8e98-67c3677ce5f2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/dto/DeliveryPersonDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/dto/UserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/dto/UserUpdateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/AuditorAwareImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/presentation/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/application/dto/DeliveryPersonReqDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/application/dto/DeliveryPersonResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/application/service/DeliveryPersonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/client/AuthClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/client/HubClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/common/TimeStamped.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/repository/DeliveryPersonRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/presentaion/controller/DeliveryPersonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/controller/HubController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/repository/HubRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/service/HubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/auth/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/auth/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/dto/SignUpRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/dto/SignUpRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/UserRoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/UserRoleEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/service/AuthDomainService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/service/UserDomainService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/presentation/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/presentation/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/DeliveryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/DeliveryApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/DeliveryPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/DeliveryPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/DeliveryPersonRoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/common/DeliveryPersonRoleEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/DeliveryRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/DeliveryRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/model/DeliveryRoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/doamin/common/DeliveryRoleEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/object/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/object/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/controller/HubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/controller/HubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/dto/HubResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/dto/HubResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/repository/HubRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/repository/HubRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/service/HubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/service/HubService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +123,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "hub__API__#12__ayboori",
+    "git-widget-placeholder": "Merging hub__API__#12__ayboori",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -190,7 +225,7 @@
       <option name="presentableId" value="Default" />
       <updated>1725902974966</updated>
       <workItem from="1725902977088" duration="329000" />
-      <workItem from="1726159520856" duration="313000" />
+      <workItem from="1726159520856" duration="567000" />
     </task>
     <servers />
   </component>
