@@ -11,8 +11,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/hub")
 public class HubController {
 
@@ -20,6 +20,7 @@ public class HubController {
     // User 검증
 
     private final HubService hubService;
+
 
     // ## 모든 로그인 사용자가 가능
     @GetMapping("{hub_id}")
@@ -31,8 +32,8 @@ public class HubController {
     // 허브 이름으로 검색
     @GetMapping
     public Page<HubResponseDto> search(
-           @RequestParam(required = false, name = "searchValue") String searchValue,
-           @PageableDefault(
+            @RequestParam(required = false, name = "searchValue") String searchValue,
+            @PageableDefault(
                     size = 10, sort = {"createdAt", "updatedAt"}, direction = Sort.Direction.DESC
             ) Pageable pageable
     ){

@@ -7,9 +7,9 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface HubRepository extends JpaRepository<Hub,String> {
-    Optional findByName(String name);
+    Optional<Hub> findByName(String name);
 
-    Optional findByAddress(String address);
+    Optional<Hub> findByAddress(String address);
 
     Page<Hub> findByNameContaining(String searchValue, Pageable pageable);
     Page<Hub> findAllByIsDeletedFalse(Pageable pageable);

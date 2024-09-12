@@ -20,13 +20,16 @@ public class HubService {
     public HubResponseDto getOne(String hubId) {
         Hub hub = findHub(hubId);
 
+        // is_deleted 체크
+        is_hub_deleted(hub);
+
         // Dto로 만들어서 리턴
         return new HubResponseDto(hub);
     }
 
     public Page<HubResponseDto> search(String searchValue, Pageable pageable) {
         if (searchValue == null || searchValue.isBlank()) {
-            return hubRepository.findAllByIsDeletedFalse(pageable)
+            return hubRepository.findAllByIsDeletedFalse(pageable) // 삭제 요청 안 된 정보
                     .map(HubResponseDto::new);  // DTO로 변환
         }
         return hubRepository.findByNameContaining(searchValue, pageable)
@@ -38,8 +41,8 @@ public class HubService {
         isUserMaster();
 
         // name, address 중복 체크
-        Optional checkNameHub = hubRepository.findByName(requestDto.getName());
-        Optional checkAddressHub = hubRepository.findByAddress(requestDto.getAddress());
+        Optional<Hub> checkNameHub = hubRepository.findByName(requestDto.getName());
+        Optional<Hub> checkAddressHub = hubRepository.findByAddress(requestDto.getAddress());
 
         if(checkNameHub.isPresent()){
             throw new IllegalArgumentException("이미 존재하는 허브 이름입니다.");
@@ -61,15 +64,18 @@ public class HubService {
 
         Hub hub = findHub(hubId);
 
+        // is_deleted 체크
+        is_hub_deleted(hub);
+
         // name, address 중복 체크
-        Optional checkNameHub = hubRepository.findByName(requestDto.getName());
-        Optional checkAddressHub = hubRepository.findByAddress(requestDto.getAddress());
+        Optional<Hub> checkNameHub = hubRepository.findByName(requestDto.getName());
+        Optional<Hub> checkAddressHub = hubRepository.findByAddress(requestDto.getAddress());
 
         if(checkNameHub.isPresent() && !checkNameHub.get().equals(hub)){
             throw new IllegalArgumentException("이미 존재하는 허브 이름입니다.");
         }
 
-        if(checkAddressHub.isPresent() && !checkNameHub.get().equals(hub)){
+        if(checkAddressHub.isPresent() && !checkAddressHub.get().equals(hub)){
             throw new IllegalArgumentException("이미 존재하는 주소입니다.");
         }
 
@@ -86,9 +92,8 @@ public class HubService {
 
         Hub hub = findHub(hubId);
 
-        if(hub.isDeleted()){
-            throw new IllegalArgumentException("이미 삭제 요청된 허브입니다.");
-        }
+        // is_deleted 체크
+        is_hub_deleted(hub);
 
         hub.delete();
 
@@ -108,5 +113,13 @@ public class HubService {
     // 생성, 수정, 삭제는 마스터 관리자만 가능
     private void isUserMaster(){
         // 토큰에서 값 읽어온 뒤, master가 아니면 exception 던지는 방식으로 구현
+    }
+
+    // is_deleted = true면 조회, 수정 불가
+    private boolean is_hub_deleted(Hub hub){
+        if(hub.isDeleted()){
+            throw new IllegalArgumentException("이미 삭제 요청된 허브입니다.");
+        }
+        return false;
     }
 }

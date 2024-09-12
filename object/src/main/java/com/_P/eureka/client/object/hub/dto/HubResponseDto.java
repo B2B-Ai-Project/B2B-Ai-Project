@@ -2,6 +2,8 @@ package com._P.eureka.client.object.hub.dto;
 
 import com._P.eureka.client.object.hub.entity.Hub;
 
+@Getter
+@NoArgsConstructor
 public class HubResponseDto {
     private String hubId;
     private String name;
