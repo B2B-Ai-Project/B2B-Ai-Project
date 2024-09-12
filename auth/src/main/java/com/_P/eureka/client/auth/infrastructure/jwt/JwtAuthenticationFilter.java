@@ -53,6 +53,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String token = jwtUtil.createToken(username, role); // 토큰 생성
         jwtUtil.addJwtToCookie(token, response);
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, token);
     }
 
     @Override

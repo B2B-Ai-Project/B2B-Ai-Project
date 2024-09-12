@@ -1,4 +1,4 @@
-package com._P.eureka.client.delivery.doamin.model;
+package com._P.eureka.client.delivery.doamin.common;
 
 public enum DeliveryRoleEnum {
   HUB_WAITING, // 허브 이동 대기중

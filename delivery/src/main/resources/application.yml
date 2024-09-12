@@ -3,13 +3,13 @@ spring:
     name: delivery-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ai
-    username:
-    password:
+    url: jdbc:postgresql://localhost:5432/delivery
+    username: postgres
+    password: seoght3658
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
 
 server:
