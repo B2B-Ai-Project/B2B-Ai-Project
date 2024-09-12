@@ -86,7 +86,7 @@ public class HubService {
 
         Hub hub = findHub(hubId);
 
-        if(hub.is_deleted()){
+        if(hub.isDeleted()){
             throw new IllegalArgumentException("이미 삭제 요청된 허브입니다.");
         }
 

@@ -15,7 +15,7 @@ public class Hub {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
-    private String hub_id;
+    private String hubId;
 
     @Column(nullable = false)
     private String name;
@@ -28,10 +28,10 @@ public class Hub {
     private int longitude;
 
     @Column(nullable = false)
-    private boolean is_deleted = false;
+    private boolean isDeleted = false;
 
     public void delete() {
-        this.is_deleted = true;
+        this.isDeleted = true;
     }
 
     public void update(HubUpdateDto requestDto) {

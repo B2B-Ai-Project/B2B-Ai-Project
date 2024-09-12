@@ -1,10 +1,17 @@
 spring:
   application:
     name: object-service
-#server:
-#  port: 19095
-#eureka:
-#  client:
-#    service-url:
-#      # 유레카 서버의 주소 설정
-#      defaultZone: http://localhost:19090/eureka/
+  datasource:
+    url: jdbc:postgresql://localhost:5432/object
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+server:
+  port: 19095
+eureka:
+  client:
+    service-url:
+      # 유레카 서버의 주소 설정
+      defaultZone: http://localhost:19090/eureka/
+
+
