@@ -2,7 +2,6 @@ package com._P.eureka.client.object.hub.dto;
 
 import com._P.eureka.client.object.hub.entity.Hub;
 import lombok.Getter;
-
 @Getter
 public class HubCreateDto {
     private String name;

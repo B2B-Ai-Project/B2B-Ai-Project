@@ -5,6 +5,8 @@ import com._P.eureka.client.object.hub.dto.HubUpdateDto;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
@@ -15,7 +17,7 @@ public class Hub {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
-    private String hubId;
+    private UUID hubId;
 
     @Column(nullable = false)
     private String name;

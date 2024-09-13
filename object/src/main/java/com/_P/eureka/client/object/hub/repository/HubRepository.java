@@ -5,8 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Pageable;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface HubRepository extends JpaRepository<Hub,String> {
+public interface HubRepository extends JpaRepository<Hub, UUID> {
     Optional<Hub> findByName(String name);
 
     Optional<Hub> findByAddress(String address);

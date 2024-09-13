@@ -11,14 +11,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class HubService {
     private final HubRepository hubRepository;
 
-    public HubResponseDto getOne(String hubId) {
-        Hub hub = chekHub(hubId);
+    public HubResponseDto getOne(UUID hubId) {
+        Hub hub = checkHub(hubId);
 
         // Dto로 만들어서 리턴
         return new HubResponseDto(hub);
@@ -55,11 +56,11 @@ public class HubService {
     }
 
     @Transactional
-    public HubResponseDto update(HubUpdateDto requestDto, String hubId) {
+    public HubResponseDto update(HubUpdateDto requestDto, UUID hubId) {
         // master 권한 체크
         isUserMaster();
 
-        Hub hub = chekHub(hubId);
+        Hub hub = checkHub(hubId);
 
         // name, address 중복 체크
         Optional<Hub> checkNameHub = hubRepository.findByName(requestDto.getName());
@@ -80,18 +81,18 @@ public class HubService {
     }
 
     @Transactional
-    public String delete(String hubId) {
+    public String delete(UUID hubId) {
         // master 권한 체크
         isUserMaster();
 
-        Hub hub = chekHub(hubId);
+        Hub hub = checkHub(hubId);
         hub.delete();
 
         return "삭제가 완료되었습니다.";
     }
 
     // 허브 id가 중복이 아니면 허브 리턴, is_deleted = true면 조회, 수정 불가
-    private Hub chekHub(String hubId){
+    private Hub checkHub(UUID hubId){
         Hub hub = hubRepository.findById(hubId).orElseThrow(
                 () -> new NullPointerException("Id에 해당하는 허브가 없습니다.")
         );
