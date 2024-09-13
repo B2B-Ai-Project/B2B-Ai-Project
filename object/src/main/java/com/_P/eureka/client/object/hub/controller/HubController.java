@@ -60,4 +60,12 @@ public class HubController {
 
         return hubService.delete(hubId);
     }
+
+    // DeliveryPerson 에서 사용할 허브 존재 여부 검증 API
+    @PostMapping("/validate/{hubId}")
+    public UUID validateHubId(
+            @PathVariable UUID hubId
+    ) {
+        return hubService.validateHubId(hubId);
+    }
 }

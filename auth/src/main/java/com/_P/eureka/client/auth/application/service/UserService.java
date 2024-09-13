@@ -83,7 +83,7 @@ public class UserService {
         User user = userRepository.findById(userId).orElseThrow(()->
                 new IllegalArgumentException("존재하지 않는 유저 입니다."));
 
-        if (!user.getRole().equals(UserRoleEnum.HUB_DELIVERY)){
+        if (!user.getRole().equals(UserRoleEnum.DELIVERY_PERSON)){
             throw new IllegalArgumentException("잘못된 권한 접근 입니다.");
         }
         // DeliveryPerson Application 에서 email(SlackId)가 필요하다

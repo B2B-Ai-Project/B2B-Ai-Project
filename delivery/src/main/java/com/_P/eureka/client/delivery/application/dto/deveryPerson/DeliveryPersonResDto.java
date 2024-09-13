@@ -1,4 +1,4 @@
-package com._P.eureka.client.delivery.application.dto;
+package com._P.eureka.client.delivery.application.dto.deveryPerson;
 
 import com._P.eureka.client.delivery.doamin.model.DeliveryPerson;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class DeliveryPersonResDto {
   private UUID deliveryPersonId;
-  private String hubId;
+  private UUID hubId;
   private String email;
   private String role;
   private boolean is_waiting;
