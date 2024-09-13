@@ -92,7 +92,7 @@ public class HubService {
     }
 
     // 허브 id가 중복이 아니면 허브 리턴, is_deleted = true면 조회, 수정 불가
-    private Hub checkHub(UUID hubId){
+    public Hub checkHub(UUID hubId){
         Hub hub = hubRepository.findById(hubId).orElseThrow(
                 () -> new NullPointerException("Id에 해당하는 허브가 없습니다.")
         );

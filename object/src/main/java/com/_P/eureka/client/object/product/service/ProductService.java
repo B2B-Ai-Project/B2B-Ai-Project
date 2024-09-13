@@ -2,8 +2,10 @@ package com._P.eureka.client.object.product.service;
 
 import com._P.eureka.client.object.company.entity.Company;
 import com._P.eureka.client.object.company.repository.CompanyRepository;
+import com._P.eureka.client.object.company.service.CompanyService;
 import com._P.eureka.client.object.hub.entity.Hub;
 import com._P.eureka.client.object.hub.repository.HubRepository;
+import com._P.eureka.client.object.hub.service.HubService;
 import com._P.eureka.client.object.product.dto.ProductCreateDto;
 import com._P.eureka.client.object.product.dto.ProductResponseDto;
 import com._P.eureka.client.object.product.dto.ProductUpdateDto;
@@ -23,16 +25,16 @@ import java.util.UUID;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final CompanyRepository companyRepository;
-    private final HubRepository hubRepository;
+    private final CompanyService companyService;
+    private final HubService hubService;
 
     public String create(ProductCreateDto requestDto) {
         // TODO
         // 권한 체크
 
         // 업체, 허브 존재 여부 확인
-        Company company = checkCompany(requestDto.getCompanyId());
-        Hub hub = checkHub(requestDto.getHubId());
+        Company company = companyService.checkCompany(requestDto.getCompanyId());
+        Hub hub = hubService.checkHub(requestDto.getHubId());
 
         Product product = requestDto.toEntity(company,hub);
 
@@ -49,8 +51,8 @@ public class ProductService {
         // 권한 체크
 
         // 업체, 허브 존재 여부 확인
-        Company company = checkCompany(requestDto.getCompanyId());
-        Hub hub = checkHub(requestDto.getHubId());
+        Company company = companyService.checkCompany(requestDto.getCompanyId());
+        Hub hub = hubService.checkHub(requestDto.getHubId());
 
         // 이미 삭제된 제품인지 체크
         Product product = checkProduct(productId);
@@ -91,31 +93,6 @@ public class ProductService {
         return productRepository.findByProductNameAndIsDeletedFalse(searchValue,pageable).map(ProductResponseDto::new);
 
     }
-
-    // 상품 업체 존재 여부 확인
-    private Company checkCompany(UUID companyId){
-        Company company = companyRepository.findById(companyId).orElseThrow(
-                () -> new NullPointerException("ID에 해당하는 업체가 없습니다.")
-        );
-
-        if(company.isDeleted()){
-            throw new IllegalArgumentException("이미 삭제 요청된 업체입니다.");
-        }
-        return company;
-    }
-
-    // 상품 허브 존재 여부 확인
-    private Hub checkHub(UUID hubId){
-        Hub hub = hubRepository.findById(hubId).orElseThrow(
-                () -> new NullPointerException("ID에 해당하는 허브가 없습니다.")
-        );
-
-        if(hub.isDeleted()){
-            throw new IllegalArgumentException("이미 삭제 요청된 허브입니다.");
-        }
-        return hub;
-    }
-
 
     // 업체, 제품명이 동일하면 같은 제품 / 추가, 수정 불가
     private void isProductAlreadyExists(Product product){
