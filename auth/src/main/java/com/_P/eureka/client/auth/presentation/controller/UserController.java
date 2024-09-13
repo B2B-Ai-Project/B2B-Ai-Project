@@ -98,7 +98,6 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserList(pageable));
     }
 
-
     // 배송 담당자 생성 검증
     @PostMapping("/create/deliveryPerson/{userId}")
     public String createDeliveryPerson(
@@ -107,6 +106,9 @@ public class UserController {
         // 검증 완료 시 slackId 반환
         return userService.checkUser(userId);
     }
+
+
+
 
 
 }

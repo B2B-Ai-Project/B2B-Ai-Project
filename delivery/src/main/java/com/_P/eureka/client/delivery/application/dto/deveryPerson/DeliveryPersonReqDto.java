@@ -1,4 +1,4 @@
-package com._P.eureka.client.delivery.application.dto;
+package com._P.eureka.client.delivery.application.dto.deveryPerson;
 
 import com._P.eureka.client.delivery.doamin.common.DeliveryPersonRoleEnum;
 import lombok.AllArgsConstructor;
