@@ -1,11 +1,15 @@
 package com._P.eureka.client.object.hub.dto;
 
 import com._P.eureka.client.object.hub.entity.Hub;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Getter
 @NoArgsConstructor
 public class HubResponseDto {
-    private String hubId;
+    private UUID hubId;
     private String name;
 
     private String address;
