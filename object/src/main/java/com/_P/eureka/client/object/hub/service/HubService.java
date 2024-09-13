@@ -86,10 +86,6 @@ public class HubService {
         isUserMaster();
 
         Hub hub = checkHub(hubId);
-
-        // is_deleted 체크
-        is_hub_deleted(hub);
-
         hub.delete();
 
         return "삭제가 완료되었습니다.";
@@ -100,6 +96,10 @@ public class HubService {
         Hub hub = hubRepository.findById(hubId).orElseThrow(
                 () -> new NullPointerException("Id에 해당하는 허브가 없습니다.")
         );
+
+        if(hub.isDeleted()){
+            throw new IllegalArgumentException("이미 삭제 요청된 허브입니다.");
+        }
         return hub;
     }
 
@@ -108,13 +108,5 @@ public class HubService {
     // 생성, 수정, 삭제는 마스터 관리자만 가능
     private void isUserMaster(){
         // 토큰에서 값 읽어온 뒤, master가 아니면 exception 던지는 방식으로 구현
-    }
-
-    // is_deleted = true면 조회, 수정 불가
-    private boolean is_hub_deleted(Hub hub){
-        if(hub.isDeleted()){
-            throw new IllegalArgumentException("이미 삭제 요청된 허브입니다.");
-        }
-        return false;
     }
 }

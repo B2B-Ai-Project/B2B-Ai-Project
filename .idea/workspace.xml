@@ -11,6 +11,7 @@
       <change beforePath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/repository/HubRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/repository/HubRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/service/HubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/hub/service/HubService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/object/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/resources/application.yml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +89,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "hub__API__#12__ayboori",
+    "git-widget-placeholder": "Merging hub__API__#12__ayboori",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
