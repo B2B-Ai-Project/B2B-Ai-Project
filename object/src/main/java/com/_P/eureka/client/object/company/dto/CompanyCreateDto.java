@@ -5,11 +5,13 @@ import com._P.eureka.client.object.company.entity.Company;
 import com._P.eureka.client.object.hub.entity.Hub;
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 public class CompanyCreateDto {
     private String name;
     private CompanyTypeEnum companyType;
-    private String hubId;
+    private UUID hubId;
     private String address;
 
     public Company toEntity(Hub hub) {

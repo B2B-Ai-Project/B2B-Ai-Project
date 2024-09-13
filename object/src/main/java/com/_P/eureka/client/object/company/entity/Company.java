@@ -6,6 +6,8 @@ import com._P.eureka.client.object.hub.entity.Hub;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
@@ -13,12 +15,12 @@ import lombok.*;
 @Entity
 @Table(name = "p_company",
         uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"name", "address"})
-})
+                @UniqueConstraint(columnNames = {"name", "address"})
+        })
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String company_id;
+    private UUID companyId;
 
     private String name;
 
