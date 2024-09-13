@@ -85,7 +85,6 @@ public class HubService {
         isUserMaster();
 
         Hub hub = chekHub(hubId);
-
         hub.delete();
 
         return "삭제가 완료되었습니다.";
