@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/company")
@@ -29,19 +31,19 @@ public class CompanyController {
 
     // === MASTER, HUB_MANAGER, COMPANY ===
     @PutMapping("{companyId}")
-    public CompanyResponseDto update(@RequestBody CompanyUpdateDto requestDto, @PathVariable String companyId){
+    public CompanyResponseDto update(@RequestBody CompanyUpdateDto requestDto, @PathVariable UUID companyId){
         return companyService.update(requestDto,companyId);
     }
 
     // === MASTER, HUB_MANAGER ===
     @DeleteMapping("{companyId}")
-    public String delete(@PathVariable String companyId){
+    public String delete(@PathVariable UUID companyId){
         return companyService.delete(companyId);
     }
 
     // === 모든 사용자 접근 가능 ===
     @GetMapping("{companyId}")
-    public CompanyResponseDto getOne(@PathVariable String companyId){
+    public CompanyResponseDto getOne(@PathVariable UUID companyId){
         return companyService.getOne(companyId);
     }
 

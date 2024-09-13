@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -23,9 +24,10 @@ public class CompanyService {
 
     private final CompanyRepository companyRepository;
     private final HubRepository hubRepository;
+
     public String create(CompanyCreateDto requestDto) {
         // TODO
-        // === MASTER, HUB_MANAGER만 접근 허용 ===
+        // === MASTER, HUB_MANAGER, COMPANY만 접근 허용 ===
 
         // 허브 존재 체크
         Hub hub = getHub(requestDto.getHubId());
@@ -39,7 +41,7 @@ public class CompanyService {
     }
 
     @Transactional
-    public CompanyResponseDto update(CompanyUpdateDto requestDto, String companyId) {
+    public CompanyResponseDto update(CompanyUpdateDto requestDto, UUID companyId) {
         // TODO
         // === MASTER, HUB_MANAGER, COMPANY만 접근 허용 ===
 
@@ -55,7 +57,7 @@ public class CompanyService {
     }
 
     @Transactional
-    public String delete(String companyId) {
+    public String delete(UUID companyId) {
         // TODO
         // === MASTER, HUB_MANAGER만 접근 가능 ===
 
@@ -65,7 +67,7 @@ public class CompanyService {
         return "삭제 완료";
     }
 
-    public CompanyResponseDto getOne(String companyId) {
+    public CompanyResponseDto getOne(UUID companyId) {
         Company company = checkCompany(companyId); // 이미 삭제된 회사인지 체크
 
         return new CompanyResponseDto(company);
@@ -89,14 +91,14 @@ public class CompanyService {
 
 
     // 관리 허브 ID가 존재하는 허브인지 확인
-    private Hub getHub(String hubId){
+    private Hub getHub(UUID hubId){
         return hubRepository.findById(hubId).orElseThrow(
                 () -> new NullPointerException("해당 허브는 존재하지 않습니다.")
         );
     }
 
     // company 값 읽어오기 / is_deleted = true면 조회, 수정, 삭제 불가
-    private Company checkCompany(String companyId){
+    private Company checkCompany(UUID companyId){
         Company company = companyRepository.findById(companyId).orElseThrow(
                 () -> new NullPointerException("해당 업체는 존재하지 않습니다.")
         );
