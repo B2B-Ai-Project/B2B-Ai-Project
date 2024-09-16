@@ -24,7 +24,7 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.projectlombok:lombok:1.18.28'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -35,10 +35,10 @@ dependencies {
 	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	// OpenFeign 의존성
+//	// OpenFeign 의존성
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-	// Security
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	// Security
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 dependencyManagement {

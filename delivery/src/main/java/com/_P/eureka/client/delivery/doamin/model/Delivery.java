@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Delivery { // 배송
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private UUID id;
+  private UUID deliveryId;
 
   @Column(nullable = false)
   @Enumerated(value=EnumType.STRING)

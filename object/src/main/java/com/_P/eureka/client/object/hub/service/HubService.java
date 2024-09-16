@@ -109,4 +109,11 @@ public class HubService {
     private void isUserMaster(){
         // 토큰에서 값 읽어온 뒤, master가 아니면 exception 던지는 방식으로 구현
     }
+
+    public UUID validateHubId(UUID hubId) {
+        Hub validateHub = hubRepository.findById(hubId).orElseThrow(() ->
+                new IllegalArgumentException("허브가 존재하지 않습니다."));
+
+        return validateHub.getHubId();
+    }
 }

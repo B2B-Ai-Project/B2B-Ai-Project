@@ -15,7 +15,7 @@ import java.util.UUID;
 public class DeliveryRecord { // 배송 경로 기록
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private UUID id;
+  private UUID deliveryRecordId;
 
   @Column(nullable = false)
   @Enumerated(value=EnumType.STRING)
