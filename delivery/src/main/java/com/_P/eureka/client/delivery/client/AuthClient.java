@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @FeignClient("auth-service")
 public interface AuthClient {
-  @PostMapping("/create/deliveryPerson/{userId}")
+  @PostMapping("/api/create/deliveryPerson/{userId}")
   String create(
           @PathVariable("userId") UUID userId
   );

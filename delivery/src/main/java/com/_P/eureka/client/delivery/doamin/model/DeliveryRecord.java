@@ -10,12 +10,21 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
+@Setter
 @Entity
 @Table(name = "p_delivery_record")
 public class DeliveryRecord { // 배송 경로 기록
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID deliveryRecordId;
+
+  @OneToOne
+  @JoinColumn(name = "delivery_id", referencedColumnName = "deliveryId", nullable = false)
+  private Delivery delivery;
+
+  private String sequence;
+  private UUID startHubId;
+  private UUID endHubId;
 
   @Column(nullable = false)
   @Enumerated(value=EnumType.STRING)

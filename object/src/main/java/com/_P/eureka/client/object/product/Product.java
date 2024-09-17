@@ -5,6 +5,8 @@ import com._P.eureka.client.object.hub.entity.Hub;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
@@ -14,7 +16,7 @@ import lombok.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String product_id;
+    private UUID productId;
 
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
@@ -29,7 +31,17 @@ public class Product {
 
     private String product_content;
 
+    private Integer quantity; // 보유 수량
+
     @Column(nullable = false)
     private boolean is_deleted;
 
+    // 수량 확인 및 증감
+    public void decreaseQuantity(Integer orderQuantity){
+        if (this.quantity >= orderQuantity){
+            this.quantity = this.quantity - orderQuantity;
+        }else {
+            throw new RuntimeException("수량이 부족합니다");
+        }
+    }
 }
