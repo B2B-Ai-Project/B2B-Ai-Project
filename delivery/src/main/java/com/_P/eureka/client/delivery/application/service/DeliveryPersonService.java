@@ -81,7 +81,7 @@ public class DeliveryPersonService {
     // is_deleted가 false인 DeliveryPerson 목록만 조회
     Page<DeliveryPerson> deliveryPersonPage = deliveryPersonRepository.findAllByIsDeletedFalse(pageable);
 
-    return deliveryPersonPage.map(DeliveryPersonResDto::new);
+    return deliveryPersonPage.map(DeliveryPersonResDto::fromEntity);
   }
 
 }
