@@ -10,6 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
+@Setter
 @Entity
 @Table(name = "p_order")
 public class Order extends TimeStamped { // 주문
@@ -17,11 +18,11 @@ public class Order extends TimeStamped { // 주문
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID orderId;
 
-  private String supplierId; // 공급 허브 업체 ID
-  private String recipientId; // 수령 허브 업체 ID
-  private String deliveryId; // 배송 ID
-  private String productId; // 제품 ID
-  private Integer quantity; // 수량
+  private UUID supplierCompanyId; // 공급 허브 업체 ID
+  private UUID recipientCompanyId; // 수령 허브 업체 ID
+  private UUID deliveryId; // 배송 ID
+  private UUID productId; // 제품 ID
+  private Integer quantity; // 주문 수량
 
   private String recipientName; // 수령인
   private String recipientAddress; // 배송지 주소

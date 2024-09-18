@@ -57,6 +57,4 @@ public class DeliveryPersonController {
     return deliveryPersonService.search(page - 1, size, sortBy, isAsc);
   }
 
-
-
 }
