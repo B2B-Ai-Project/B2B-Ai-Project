@@ -32,4 +32,5 @@ public class Delivery extends TimeStamped { // 배송
   private String recipientName;
   private String recipientPhoneNumber;
 
+
 }

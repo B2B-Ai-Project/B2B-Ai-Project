@@ -90,9 +90,7 @@ public class OrderService {
     order.setRecipientName(receiverDto.getRecipientName());
     order.setRecipientPhoneNumber(receiverDto.getRecipientPhoneNumber());
 
-
-    // 주문과 같은 생명 주기의 배송 수정
-    // TODO 질문 : OrderService에서 Delivery에 대한 내용을 수정을 해주는게 맞는지? 혹은 DeliveryService에서 처리해 주는게 맞는지?
+    // 배송 수정
     Delivery delivery = findByOrderId(order.getOrderId());
     delivery.setRecipientName(receiverDto.getRecipientName());
     delivery.setRecipientPhoneNumber(receiverDto.getRecipientPhoneNumber());
@@ -122,15 +120,6 @@ public class OrderService {
     }
   }
 
-  public Order findById(UUID orderId){
-    Order order = orderRepository.findById(orderId).orElseThrow(()->
-            new IllegalArgumentException("주문이 존재하지 않습니다."));
-    if (order.isDeleted()){
-      throw new IllegalArgumentException("이미 삭제 요청된 주문입니다.");
-    }
-    return order;
-  }
-
   // 주문에 해당하는 배송 조회
   public Delivery findByOrderId(UUID orderId){
     return deliveryRepository.findByOrderId(orderId).orElseThrow(()->
@@ -149,4 +138,12 @@ public class OrderService {
     return orderPage.map(OrderInfoDto::new);
   }
 
+  public Order findById(UUID orderId){
+    Order order = orderRepository.findById(orderId).orElseThrow(()->
+            new IllegalArgumentException("주문이 존재하지 않습니다."));
+    if (order.isDeleted()){
+      throw new IllegalArgumentException("이미 삭제 요청된 주문입니다.");
+    }
+    return order;
+  }
 }
