@@ -44,4 +44,8 @@ public class Product {
             throw new RuntimeException("수량이 부족합니다");
         }
     }
+
+    public void returnQuantity(Integer quantity) {
+        this.quantity = this.quantity + quantity;
+    }
 }

@@ -1,6 +1,7 @@
 package com._P.eureka.client.delivery.doamin.model;
 
 import com._P.eureka.client.delivery.doamin.common.DeliveryRoleEnum;
+import com._P.eureka.client.delivery.doamin.common.TimeStamped;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "p_delivery_record")
-public class DeliveryRecord { // 배송 경로 기록
+public class DeliveryRecord extends TimeStamped { // 배송 경로 기록
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID deliveryRecordId;

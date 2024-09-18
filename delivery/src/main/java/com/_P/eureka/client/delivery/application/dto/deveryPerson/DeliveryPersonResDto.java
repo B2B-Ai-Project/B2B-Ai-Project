@@ -36,7 +36,7 @@ public class DeliveryPersonResDto {
     this.email = deliveryPerson.getEmail();
     this.role = String.valueOf(deliveryPerson.getRole());
     this.is_waiting = deliveryPerson.is_waiting();
-    this.is_deleted = deliveryPerson.is_deleted();
+    this.is_deleted = deliveryPerson.isDeleted();
   }
 
 }

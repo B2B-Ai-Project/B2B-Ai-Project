@@ -14,11 +14,22 @@ import java.util.UUID;
 public class OrderValidateController {
   private final OrderValidateService orderValidateService;
 
+  // OrderDto 검증
   @PostMapping("/validate")
   public ResponseOrderDto orderValidate(
           @RequestBody RequestOrderDto request
   ) {
     return orderValidateService.orderValidate(request);
   }
+
+  // 주문 취소 시 해당 허브에 주문 수량 반환
+  @GetMapping("/returnQuantity")
+  public void returnQuantity(
+          @RequestParam("productId") UUID productId,
+          @RequestParam("quantity") Integer quantity
+  ) {
+      orderValidateService.returnQuantity(productId, quantity);
+  }
+
 
 }
