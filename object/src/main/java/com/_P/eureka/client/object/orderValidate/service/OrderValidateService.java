@@ -1,12 +1,12 @@
 package com._P.eureka.client.object.orderValidate.service;
 
-import com._P.eureka.client.object.hub.repository.HubRepository;
-import com._P.eureka.client.object.orderValidate.dto.RequestOrderDto;
-import com._P.eureka.client.object.orderValidate.dto.ResponseOrderDto;
 import com._P.eureka.client.object.company.entity.Company;
 import com._P.eureka.client.object.company.repository.CompanyRepository;
+import com._P.eureka.client.object.orderValidate.dto.RequestOrderDto;
+import com._P.eureka.client.object.orderValidate.dto.ResponseOrderDto;
+
+import com._P.eureka.client.object.product.entity.Product;
 import com._P.eureka.client.object.product.repository.ProductRepository;
-import com._P.eureka.client.object.product.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,6 @@ import java.util.UUID;
 public class OrderValidateService {
   private final CompanyRepository companyRepository;
   private final ProductRepository productRepository;
-  private final HubRepository hubRepository;
 
   // 공급업체 및 수령업체 존재 검증, 제품ID 존재 검증 및 수량 확인
   public ResponseOrderDto orderValidate(RequestOrderDto request) {
