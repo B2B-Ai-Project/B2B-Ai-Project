@@ -1,12 +1,9 @@
 package com._P.eureka.client.delivery.presentaion.controller;
 
-import com._P.eureka.client.delivery.application.dto.deveryPerson.DeliveryPersonResDto;
 import com._P.eureka.client.delivery.application.dto.order.CreateOrderDto;
 import com._P.eureka.client.delivery.application.dto.order.OrderInfoDto;
 import com._P.eureka.client.delivery.application.dto.order.ReceiverDto;
-import com._P.eureka.client.delivery.application.dto.order.ResponseOrderDto;
 import com._P.eureka.client.delivery.application.service.OrderService;
-import com._P.eureka.client.delivery.doamin.model.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -25,15 +22,21 @@ public class OrderController {
   public ResponseEntity<?> create(
           @RequestBody CreateOrderDto createOrderDto
   ) {
-    orderService.create(createOrderDto.getRequest(), createOrderDto.getReceiver());
-    return ResponseEntity.ok("주문 생성 완료");
+
+    try {
+      orderService.create(createOrderDto.getRequest(), createOrderDto.getReceiver());
+      return ResponseEntity.ok("주문 생성 완료");
+    } catch (Exception e) {
+      // 에러 발생 시, 에러 메시지와 함께 400 Bad Request 반환
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
   }
 
   // 주문 단건 조회 / 나중에 토큰으로 수정
   @GetMapping("/{orderId}")
   public OrderInfoDto getOrder(
           @PathVariable UUID orderId
-          ){
+  ) {
     return orderService.getOrder(orderId);
   }
 
@@ -42,7 +45,7 @@ public class OrderController {
   public OrderInfoDto updateOrder(
           @PathVariable UUID orderId,
           @RequestBody ReceiverDto receiverDto
-          ){
+  ) {
     return orderService.updateOrder(orderId, receiverDto);
   }
 
@@ -50,9 +53,13 @@ public class OrderController {
   @DeleteMapping("/{orderId}")
   public ResponseEntity<?> deleteOrder(
           @PathVariable UUID orderId
-  ){
-    orderService.deleteOrder(orderId);
-    return ResponseEntity.ok("주문 삭제 완료");
+  ) {
+    try {
+      orderService.deleteOrder(orderId);
+      return ResponseEntity.ok("주문 삭제 완료");
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
   }
 
   @GetMapping("/search")
@@ -61,7 +68,7 @@ public class OrderController {
           @RequestParam(value = "size", defaultValue = "10") int size,
           @RequestParam(value = "sortBy", defaultValue = "createdAt") String sortBy,
           @RequestParam(value = "isAsc", defaultValue = "true") boolean isAsc // 오름차순
-  ){
+  ) {
     return orderService.search(page - 1, size, sortBy, isAsc);
   }
 

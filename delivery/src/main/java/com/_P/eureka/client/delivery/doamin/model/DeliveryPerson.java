@@ -11,6 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
+@Setter
 @Entity
 @Table(name = "p_delivery_person")
 public class DeliveryPerson extends TimeStamped { // 배송 담당자
