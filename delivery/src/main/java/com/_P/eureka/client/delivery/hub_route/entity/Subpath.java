@@ -36,6 +36,12 @@ public class Subpath {
     @Column(nullable = false)
     private boolean isDeleted = false;
 
+    public Subpath(UUID startHubId, UUID endHubId, int sequence) {
+        this.startHubId = startHubId;
+        this.endHubId = endHubId;
+        this.sequence = sequence;
+    }
+
     public void delete() {
         this.isDeleted = true;
     }

@@ -130,7 +130,7 @@ public class HubRouteService {
         return dijkstra(startHubId, endHubId, graph);
     }
 
-    // 허브 간의 거리 정보를 포함한 그래프 생성 (샘플 데이터)
+    // 허브 간의 거리 정보를 포함한 그래프 생성
     private Map<UUID, Map<UUID, Double>> createGraph() {
         // 허브 ID를 키로 하고, 각 허브와 연결된 허브의 ID와 거리 정보 저장
         Map<UUID, Map<UUID, Double>> graph = new HashMap<>();
@@ -138,12 +138,15 @@ public class HubRouteService {
         return graph;
     }
 
-    // Dijkstra 알고리즘 구현
-    private List<UUID> dijkstra(UUID startHubId, UUID endHubId, Map<UUID, Map<UUID, Double>> graph) {
+    private List<Subpath> dijkstra(UUID startHubId, UUID endHubId, Map<UUID, Map<UUID, Double>> graph) {
+        // 각 허브까지의 최단 거리를 저장하는 맵
         Map<UUID, Double> distances = new HashMap<>();
+        // 최단 경로 추적을 위해 이전 허브를 저장하는 맵
         Map<UUID, UUID> previous = new HashMap<>();
+        // 우선순위 큐를 사용하여 최소 거리 허브를 빠르게 찾음
         PriorityQueue<UUID> queue = new PriorityQueue<>(Comparator.comparing(distances::get));
 
+        // 초기화: 시작 허브는 거리 0, 나머지는 무한대로 설정
         for (UUID hubId : graph.keySet()) {
             if (hubId.equals(startHubId)) {
                 distances.put(hubId, 0.0);
@@ -153,13 +156,19 @@ public class HubRouteService {
             queue.add(hubId);
         }
 
+        // 큐가 빌 때까지 반복
         while (!queue.isEmpty()) {
+            // 현재 최단 거리 허브를 가져옴
             UUID current = queue.poll();
+            // 도착 허브에 도달하면 종료
             if (current.equals(endHubId)) break;
 
+            // 현재 허브와 연결된 모든 이웃 허브들을 탐색
             Map<UUID, Double> neighbors = graph.get(current);
             for (UUID neighbor : neighbors.keySet()) {
+                // 현재 허브를 거쳐 이웃 허브에 도달하는 거리 계산
                 double alt = distances.get(current) + neighbors.get(neighbor);
+                // 만약 계산된 거리가 기존의 최단 거리보다 짧다면 업데이트
                 if (alt < distances.get(neighbor)) {
                     distances.put(neighbor, alt);
                     previous.put(neighbor, current);
@@ -168,12 +177,24 @@ public class HubRouteService {
             }
         }
 
-        // 경로 추적
+        // 최단 경로 추적: 도착 허브부터 시작하여 역으로 이전 허브를 찾아 경로를 생성
         List<UUID> path = new ArrayList<>();
         for (UUID at = endHubId; at != null; at = previous.get(at)) {
             path.add(at);
         }
         Collections.reverse(path);
-        return path;
+
+        // 최단 경로를 Subpath 객체의 리스트로 변환
+        List<Subpath> subpaths = new ArrayList<>();
+        int sequence = 1; // 경로의 순서를 나타내는 변수
+        for (int i = 0; i < path.size() - 1; i++) {
+            UUID start = path.get(i);
+            UUID end = path.get(i + 1);
+            Subpath subpath = new Subpath(start, end, sequence++);
+            subpaths.add(subpath);
+        }
+
+        return subpaths;
     }
+
 }
