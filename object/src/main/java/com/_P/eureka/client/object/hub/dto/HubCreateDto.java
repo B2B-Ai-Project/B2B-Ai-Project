@@ -8,9 +8,9 @@ public class HubCreateDto {
 
     private String address;
 
-    private int latitude;
+    private Long latitude;
 
-    private int longitude;
+    private Long longitude;
 
     public Hub toEntity(){
         return Hub.builder()

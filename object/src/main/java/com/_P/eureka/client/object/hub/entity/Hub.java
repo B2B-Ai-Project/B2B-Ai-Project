@@ -25,9 +25,9 @@ public class Hub {
     @Column(nullable = false)
     private String address;
 
-    private int latitude;
+    private Long latitude;
 
-    private int longitude;
+    private Long longitude;
 
     @Column(nullable = false)
     private boolean isDeleted = false;

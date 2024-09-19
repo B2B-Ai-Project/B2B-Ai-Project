@@ -8,7 +8,7 @@ public class HubUpdateDto {
 
     private String address;
 
-    private int latitude;
+    private Long latitude;
 
-    private int longitude;
+    private Long longitude;
 }
