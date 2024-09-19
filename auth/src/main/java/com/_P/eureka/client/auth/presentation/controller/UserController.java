@@ -41,7 +41,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("권한이 없습니다.");
         }
 
-        return userService.deleteUser(userId);
+        return userService.deleteUser(userId, userDetails.getUsername());
     }
 
 
@@ -49,7 +49,7 @@ public class UserController {
     @PutMapping("/master/{user_id}")
     @Operation(summary = "회원정보수정 API", description = "User를 update 합니다.")
     public ResponseEntity<UserResponseDto> updateUser(
-            @PathVariable UUID userId,
+            @PathVariable("user_id") UUID userId,
             @RequestBody UserUpdateDto requestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
@@ -74,7 +74,7 @@ public class UserController {
     // 회원 단일 조회 (관리자가 특정 사용자 정보 조회)
     @GetMapping("/master/{user_id}")
     @Operation(summary = "회원 단일 조회 API", description = "관리자가 특정 사용자의 정보를 조회합니다.")
-    public ResponseEntity<UserResponseDto> getUserById(@PathVariable UUID userId,
+    public ResponseEntity<UserResponseDto> getUserById(@PathVariable("user_id") UUID userId,
                                                        @AuthenticationPrincipal UserDetailsImpl userDetails) {
         // 마스터 권한 체크
         if (userDetails.getUser().getRole() != UserRoleEnum.MASTER) {
@@ -84,8 +84,6 @@ public class UserController {
         UserResponseDto userResponse = userService.getUserById(userId);
         return ResponseEntity.ok(userResponse);
     }
-
-
 
 
     // 회원 목록 조회 (페이징 및 정렬)

@@ -2,13 +2,10 @@ package com._P.eureka.client.delivery.presentaion.controller;
 
 import com._P.eureka.client.delivery.application.dto.delivery.DeliveryResponseDto;
 import com._P.eureka.client.delivery.application.service.DeliveryService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.UUID;
 
@@ -24,7 +21,8 @@ public class DeliveryController {
   @GetMapping("/{deliveryId}")
   public DeliveryResponseDto getDelivery(
           @PathVariable UUID deliveryId
-  ){
+          // @AuthenticationPrincipal UserDetailsImpl userDetails
+          ){
       return deliveryService.getDelivery(deliveryId);
   }
 
