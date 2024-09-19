@@ -9,7 +9,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
 
 server:
@@ -20,3 +20,8 @@ eureka:
       # 유레카 서버의 주소 설정
       defaultZone: http://localhost:19090/eureka/
 
+gemini:
+  baseurl: https://generativelanguage.googleapis.com
+googleai:
+  api:
+    key:
