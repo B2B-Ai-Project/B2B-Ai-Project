@@ -139,7 +139,8 @@
 
 <br>
 
-## 📝 Technologies & Tools (BE) 📝
+## 📝 Technologies & Tools (BE)📝
+#### CSRF token cannot be found 문제   [Wiki 보기](https://github.com/B2B-Ai-Project/B2B-Ai-Project/wiki/%5BTrouble-Shooting%5D-An-expected-CSRF-token-cannot-be-found)
 
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/> <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=for-the-badge&logo=SpringSecurity&logoColor=white"/> <br>
 <img src="https://img.shields.io/badge/MSA-239120?style=for-the-badge&logo=Microservices&logoColor=white"/> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=PostgreSQL&logoColor=white"/> <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black"/> <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white"/> <img src="https://img.shields.io/badge/Gemini-FFDD00?style=for-the-badge&logo=Gemini&logoColor=black"/>
