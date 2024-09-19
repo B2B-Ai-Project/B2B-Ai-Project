@@ -30,6 +30,11 @@ public class UserController {
     @Operation(summary = "회원탈퇴 API", description = "User을 논리적으로 삭제합니다.")
     public ResponseEntity<String> deleteUser(@PathVariable("user_id") UUID userId,
                                              @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        if (userDetails == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: userDetails is null");
+        }
+
         // 요청한 id와 로그인한 id가 일치하는지 검증, role이 master가 아닐경우 403
         if(!userDetails.getUser().getUserId().equals(userId) &
                 userDetails.getUser().getRole() != UserRoleEnum.MASTER){
@@ -59,7 +64,7 @@ public class UserController {
     }
 
     // 내 정보 조회 (로그인한 사용자 정보 반환)
-    @GetMapping("/user")
+    @GetMapping("/master/user")
     @Operation(summary = "내 정보 조회 API", description = "로그인한 사용자의 정보를 조회합니다.")
     public ResponseEntity<UserResponseDto> getMyInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();

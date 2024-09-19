@@ -22,11 +22,4 @@ public interface ObjectClient {
           @RequestBody RequestOrderDto request
   );
 
-  // 주문 취소 시 해당 허브에 주문 수량 반환
-  @GetMapping("/api/order/returnQuantity")
-  void returnQuantity(
-          @RequestParam("productId") UUID productId,
-          @RequestParam("quantity") Integer quantity
-  );
-
 }

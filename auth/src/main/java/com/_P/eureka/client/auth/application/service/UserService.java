@@ -89,7 +89,4 @@ public class UserService {
         // DeliveryPerson Application 에서 email(SlackId)가 필요하다
         return user.getEmail();
     }
-
-
-
 }
