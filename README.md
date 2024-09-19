@@ -28,7 +28,7 @@
 |조아영|한수빈|서병준|
 |:---:|:---:|:---:|
 |[@ayboori](https://github.com/ayboori)|[@subinny2](https://github.com/subinny2)|[@mad-cost](https://github.com/mad-cost)||
-|BE|BE|BE|
+|presenter|security|leader|
 
 <br><br>
 
@@ -124,9 +124,11 @@
 
 ## 🚨 Trouble Shooting
 
-
+#### CSRF token cannot be found 문제 [WIKI보기](https://github.com/B2B-Ai-Project/B2B-Ai-Project/wiki/%5BTrouble-Shooting%5D-An-expected-CSRF-token-cannot-be-found)
 
 #### MSA의 Application 분리로 인한 배송 담당자를 어디서 생성해 줘야 하는가? [WIKI보기](https://github.com/B2B-Ai-Project/B2B-Ai-Project/wiki/%5BTrouble-Shooting%5D-MSA%EC%9D%98-Application-%EB%B6%84%EB%A6%AC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%EB%B0%B0%EC%86%A1-%EB%8B%B4%EB%8B%B9%EC%9E%90%EB%A5%BC-%EC%96%B4%EB%94%94%EC%84%9C-%EC%83%9D%EC%84%B1%ED%95%B4-%EC%A4%98%EC%95%BC-%ED%95%98%EB%8A%94%EA%B0%80%3F)
+
+#### 허브 이동 경로 구현 문제 (다익스트라 알고리즘) [WIKI보기](https://github.com/B2B-Ai-Project/B2B-Ai-Project/wiki/%5BTrouble-Shooting%5D-%ED%97%88%EB%B8%8C-%EA%B0%84-%EC%9D%B4%EB%8F%99-%EA%B2%BD%EB%A1%9C-%EA%B5%AC%ED%98%84-%EB%B0%A9%EC%8B%9D)
 
 <br><br>
 
@@ -142,7 +144,6 @@
 <br>
 
 ## 📝 Technologies & Tools (BE)📝
-#### CSRF token cannot be found 문제   [Wiki 보기](https://github.com/B2B-Ai-Project/B2B-Ai-Project/wiki/%5BTrouble-Shooting%5D-An-expected-CSRF-token-cannot-be-found)
 
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/> <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=for-the-badge&logo=SpringSecurity&logoColor=white"/> <br>
 <img src="https://img.shields.io/badge/MSA-239120?style=for-the-badge&logo=Microservices&logoColor=white"/> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=PostgreSQL&logoColor=white"/> <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black"/> <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white"/> <img src="https://img.shields.io/badge/Gemini-FFDD00?style=for-the-badge&logo=Gemini&logoColor=black"/>
