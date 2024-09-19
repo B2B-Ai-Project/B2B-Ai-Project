@@ -145,7 +145,7 @@
 
 #### Token Reissue [WIKI보기](https://github.com/HH9C4/BBBB-BE/wiki/%5BTrouble-Shooting%5D-Token-Reissue)
 
-#### Redis 크롤러 봇 및 인증설정 [WIKI보기](https://github.com/HH9C4/BBBB-BE/wiki/%5BTrouble-Shooting%5D-Redis-%ED%81%AC%EB%A1%A4%EB%9F%AC-%EB%B4%87-%EB%B0%8F-%EC%9D%B8%EC%A6%9D%EC%84%A4%EC%A0%95)
+#### MSA의 Application 분리로 인한 배송 담당자를 어디서 생성해 줘야 하는가? [WIKI보기](https://github.com/B2B-Ai-Project/B2B-Ai-Project/wiki/%5BTrouble-Shooting%5D-MSA%EC%9D%98-Application-%EB%B6%84%EB%A6%AC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%EB%B0%B0%EC%86%A1-%EB%8B%B4%EB%8B%B9%EC%9E%90%EB%A5%BC-%EC%96%B4%EB%94%94%EC%84%9C-%EC%83%9D%EC%84%B1%ED%95%B4-%EC%A4%98%EC%95%BC-%ED%95%98%EB%8A%94%EA%B0%80%3F)
 
 
 <br><br>
