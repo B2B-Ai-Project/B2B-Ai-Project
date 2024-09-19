@@ -1,6 +1,7 @@
 package com._P.eureka.client.auth.infrastructure.jwt;
 
 import com._P.eureka.client.auth.domain.model.UserRoleEnum;
+import com._P.eureka.client.auth.infrastructure.security.UserDetailsImpl;
 import com._P.eureka.client.auth.infrastructure.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -87,11 +88,15 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 //        SecurityContextHolder.setContext(context);
 
         SecurityContext context = SecurityContextHolder.createEmptyContext();
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetailsImpl userDetails = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
+
+
+        System.out.println("UserDetails: " + userDetails.getUsername());
+        System.out.println("Authorities: " + userDetails.getAuthorities());
+
 
         // UserDetailsImpl이 사용되도록 설정
-        Authentication authentication =
-                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         context.setAuthentication(authentication);
 
         // SecurityContext에 인증 정보 설정

@@ -6,6 +6,7 @@ import com._P.eureka.client.auth.application.dto.UserUpdateDto;
 import com._P.eureka.client.auth.domain.model.User;
 import com._P.eureka.client.auth.domain.model.UserRoleEnum;
 import com._P.eureka.client.auth.domain.repository.UserRepository;
+import com._P.eureka.client.auth.infrastructure.security.UserDetailsImpl;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -28,17 +29,13 @@ public class UserService {
 
     // 탈퇴
     @Transactional
-    public ResponseEntity<String> deleteUser(UUID userId) {
+    public ResponseEntity<String> deleteUser(UUID userId, String username) {
         // 사용자 조회
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 사용자를 찾을 수 없습니다."));
-
-        // 빌더를 사용하여 isDeleted 상태 변경
-        User deletedUser = user.deleteUser();
-
-        // 논리 삭제된 사용자 저장
-        userRepository.save(deletedUser);
-
+        // 논리 삭제 처리
+        user.markAsDeleted(username);
+        userRepository.save(user);
         return ResponseEntity.ok("탈퇴가 완료되었습니다.");
     }
 

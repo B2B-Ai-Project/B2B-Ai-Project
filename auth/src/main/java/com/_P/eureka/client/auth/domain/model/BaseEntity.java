@@ -39,8 +39,12 @@ public abstract class BaseEntity {
     @Column(name = "deleted_by")
     private String deletedBy;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted = false;  // 기본값 false
+
     public void markAsDeleted(String username) {
         this.deletedAt = LocalDateTime.now();
         this.deletedBy = username;
+        this.isDeleted = true;
     }
 }
