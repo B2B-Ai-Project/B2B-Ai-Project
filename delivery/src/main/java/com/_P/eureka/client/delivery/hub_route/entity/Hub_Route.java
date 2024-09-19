@@ -1,5 +1,6 @@
 package com._P.eureka.client.delivery.hub_route.entity;
 
+import com._P.eureka.client.delivery.hub_route.dto.HubRouteCreateDto;
 import com._P.eureka.client.delivery.hub_route.dto.HubRouteUpdateDto;
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,8 +8,6 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com._P.eureka.client.delivery.hub_route.entity.Subpath;
 
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -33,6 +32,12 @@ public class Hub_Route {
     @Column(nullable = false)
     private boolean isDeleted = false;
 
+    public Hub_Route(HubRouteCreateDto requestDto, List<Subpath> path) {
+        this.startHubId = requestDto.getStartHubId();
+        this.endHubId = requestDto.getEndHubId();
+        this.subpaths = path;
+    }
+
     public void delete(){
         this.isDeleted = true;
 
@@ -45,5 +50,9 @@ public class Hub_Route {
     public void update(HubRouteUpdateDto requestDto){
         this.startHubId = requestDto.getStartHubId();
         this.endHubId = requestDto.getEndHubId();
+    }
+
+    public void addSubpath(Subpath subpath) {
+        this.subpaths.add(subpath);
     }
 }

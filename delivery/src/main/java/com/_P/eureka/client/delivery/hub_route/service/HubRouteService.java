@@ -16,8 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -27,25 +26,33 @@ public class HubRouteService {
     private final ObjectClient objectClient;
 
     public HubRouteResponseDto createHubRoute(HubRouteCreateDto requestDto) {
-        // TODO
-        // 마스터 관리자 / 스케줄러만 접근 허용
-
-        HubResponseDto endHub = objectClient.getHubById(requestDto.getEndHubId());
+        // 마스터 관리자 / 스케줄러만 접근 허용 (TODO)
         HubResponseDto startHub = objectClient.getHubById(requestDto.getStartHubId());
+        HubResponseDto endHub = objectClient.getHubById(requestDto.getEndHubId());
 
+        // 서브패스를 포함한 최단 경로 연산
+        List<Subpath> subpaths = calculateShortestPath(requestDto.getStartHubId(), requestDto.getEndHubId());
+
+        // 서브패스를 포함한 허브 경로 저장
+        Hub_Route hubRoute = new Hub_Route(requestDto, subpaths);
+        hubRouteRepository.save(hubRoute);
+
+        // 서브패스 저장
+        subpaths.forEach(subpath -> {
+            subpath.setHubRoute(hubRoute);
+            subpathRepository.save(subpath);
+        });
+
+        return new HubRouteResponseDto(hubRoute);
     }
 
     @Transactional
     public String deleteHubRoute(UUID hubRouteId) {
-        // TODO
-        // 마스터 관리자 / 스케줄러만 접근 허용
-
+        // 마스터 관리자 / 스케줄러만 접근 허용 (TODO)
         Hub_Route hubRoute = checkHubRoute(hubRouteId);
         hubRoute.delete();
-
         return "삭제가 완료되었습니다.";
     }
-
 
     public Page<HubRouteResponseDto> searchHubRoutes(UUID startHubId, UUID endHubId, Pageable pageable) {
         if (startHubId == null && endHubId == null) { // 삭제되지 않은 모든 데이터 검색
@@ -63,12 +70,9 @@ public class HubRouteService {
         }
     }
 
-
     @Transactional
     public HubRouteResponseDto updateHubRoute(UUID hubRouteId, HubRouteUpdateDto requestDto) {
-        // TODO
-        // 마스터 관리자 / 스케줄러만 접근 허용
-
+        // 마스터 관리자 / 스케줄러만 접근 허용 (TODO)
         Hub_Route hubRoute = checkHubRoute(hubRouteId);
 
         // startHubId와 endHubId가 동일한 경우 체크
@@ -91,17 +95,9 @@ public class HubRouteService {
         return new HubRouteResponseDto(hubRoute);
     }
 
-
-
     public String createSubpath(SubpathCreateDto subpathCreateDto) {
-        // TODO
-        // 마스터 관리자 / 스케줄러만 접근 허용
-
-        // hubroute id가 같고, startHub와 endHub가 같은 데이터 추가 불가
         Hub_Route hubRoute = hubRouteRepository.findByRouteIdAndIsDeletedFalse(subpathCreateDto.getHubRouteId())
-                .orElseThrow(
-                        () -> new NullPointerException("해당 허브 경로는 존재하지 않습니다.")
-                );
+                .orElseThrow(() -> new NullPointerException("해당 허브 경로는 존재하지 않습니다."));
 
         boolean isSubpathExists = subpathRepository.existsByHubRouteAndStartHubIdAndEndHubIdAndIsDeletedFalse(
                 hubRoute, subpathCreateDto.getStartHubId(), subpathCreateDto.getEndHubId()
@@ -116,7 +112,6 @@ public class HubRouteService {
         return "생성 완료";
     }
 
-
     // 허브경로 id가 중복이 아니면 허브 리턴, is_deleted = true면 조회, 수정, 삭제 불가
     public Hub_Route checkHubRoute(UUID hubRouteId){
         Hub_Route hubRoute = hubRouteRepository.findById(hubRouteId).orElseThrow(
@@ -129,16 +124,56 @@ public class HubRouteService {
         return hubRoute;
     }
 
-    // 위도와 경도를 기준으로 두 지점 간의 거리 계산
-    private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-        final int EARTH_RADIUS = 6371; // 지구의 반지름 (킬로미터 단위)
+    // Dijkstra 알고리즘을 사용한 최단 경로 계산 메소드
+    private List<Subpath> calculateShortestPath(UUID startHubId, UUID endHubId) {
+        Map<UUID, Map<UUID, Double>> graph = createGraph(); // 허브 간의 거리 맵 생성
+        return dijkstra(startHubId, endHubId, graph);
+    }
 
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLon = Math.toRadians(lon2 - lon1);
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return EARTH_RADIUS * c;
+    // 허브 간의 거리 정보를 포함한 그래프 생성 (샘플 데이터)
+    private Map<UUID, Map<UUID, Double>> createGraph() {
+        // 허브 ID를 키로 하고, 각 허브와 연결된 허브의 ID와 거리 정보 저장
+        Map<UUID, Map<UUID, Double>> graph = new HashMap<>();
+        // 실제 데이터로 채우거나, 허브 간의 경로 데이터를 가져와서 거리 정보 추가
+        return graph;
+    }
+
+    // Dijkstra 알고리즘 구현
+    private List<UUID> dijkstra(UUID startHubId, UUID endHubId, Map<UUID, Map<UUID, Double>> graph) {
+        Map<UUID, Double> distances = new HashMap<>();
+        Map<UUID, UUID> previous = new HashMap<>();
+        PriorityQueue<UUID> queue = new PriorityQueue<>(Comparator.comparing(distances::get));
+
+        for (UUID hubId : graph.keySet()) {
+            if (hubId.equals(startHubId)) {
+                distances.put(hubId, 0.0);
+            } else {
+                distances.put(hubId, Double.MAX_VALUE);
+            }
+            queue.add(hubId);
+        }
+
+        while (!queue.isEmpty()) {
+            UUID current = queue.poll();
+            if (current.equals(endHubId)) break;
+
+            Map<UUID, Double> neighbors = graph.get(current);
+            for (UUID neighbor : neighbors.keySet()) {
+                double alt = distances.get(current) + neighbors.get(neighbor);
+                if (alt < distances.get(neighbor)) {
+                    distances.put(neighbor, alt);
+                    previous.put(neighbor, current);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        // 경로 추적
+        List<UUID> path = new ArrayList<>();
+        for (UUID at = endHubId; at != null; at = previous.get(at)) {
+            path.add(at);
+        }
+        Collections.reverse(path);
+        return path;
     }
 }

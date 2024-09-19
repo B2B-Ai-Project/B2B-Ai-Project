@@ -17,6 +17,7 @@ public class Subpath {
     @Column(nullable = false)
     private UUID subPathId;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "hub_route_id")
     private Hub_Route hubRoute;
