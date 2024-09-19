@@ -1,6 +1,9 @@
 package com._P.eureka.client.auth.domain.model;
 
 
+import lombok.Getter;
+
+@Getter
 public enum UserRoleEnum {
   //HUB_DELIVERY;
 
@@ -14,10 +17,6 @@ public enum UserRoleEnum {
 
     UserRoleEnum(String authority) {
         this.authority = authority;
-    }
-
-    public String getAuthority(){
-        return this.authority;
     }
 
     public static class Authority {

@@ -1,6 +1,5 @@
 package com._P.eureka.client.auth.infrastructure.jwt;
 
-import com._P.eureka.client.auth.domain.model.User;
 import com._P.eureka.client.auth.domain.model.UserRoleEnum;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -18,6 +17,7 @@ import org.springframework.util.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.Key;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 
@@ -62,16 +62,67 @@ public class JwtUtil {
 
     @PostConstruct
     public void init() {
-        keyCompany = Keys.hmacShaKeyFor(Base64.getDecoder().decode(COMPANY_KEY));
-        keyDeliveryPerson = Keys.hmacShaKeyFor(Base64.getDecoder().decode(DELIVERY_PERSON_KEY));
-        keyMaster = Keys.hmacShaKeyFor(Base64.getDecoder().decode(MASTER_KEY));
-        keyHubManager = Keys.hmacShaKeyFor(Base64.getDecoder().decode(HUB_MANAGER_KEY));
+        try {
+            // 디코딩 전 실제 Base64문자열을 인쇄하는 로깅을 추가하여 확인
+            logger.info("Master Key Base64 : {}", MASTER_KEY);
+
+            keyCompany = Keys.hmacShaKeyFor(Base64.getDecoder().decode(COMPANY_KEY));
+            keyDeliveryPerson = Keys.hmacShaKeyFor(Base64.getDecoder().decode(DELIVERY_PERSON_KEY));
+            keyMaster = Keys.hmacShaKeyFor(Base64.getDecoder().decode(MASTER_KEY));
+            keyHubManager = Keys.hmacShaKeyFor(Base64.getDecoder().decode(HUB_MANAGER_KEY));
+
+            // 디코딩 직후 로깅추가하여 키가 올바르게 변환되었는지 확인
+            byte[] decodedKey = Base64.getDecoder().decode(MASTER_KEY);
+            logger.info("decoded key : {}", Arrays.toString(decodedKey));
+
+
+            // 각 키들이 제대로 설정되었는지 로그로 확인
+            logger.info("Company Key: {}", keyCompany);
+            logger.info("Delivery Person Key: {}", keyDeliveryPerson);
+            logger.info("Master Key: {}", keyMaster);
+            logger.info("Hub Manager Key: {}", keyHubManager);
+
+            logger.info("Signing keys initialized successfully.");
+        } catch (IllegalArgumentException e) {
+            logger.error("Error initializing signing keys: {}", e.getMessage());
+        }
     }
+
+    // role에 따라 key 반환하는 메서드
+    public Key getKeyByRole(UserRoleEnum role) {
+        Key key;  // 선언된 변수를 사용하여 key 값을 할당합니다.
+        switch (role) {
+            case COMPANY:
+                key = keyCompany;
+                break;
+            case DELIVERY_PERSON:
+                key = keyDeliveryPerson;
+                break;
+            case MASTER:
+                key = keyMaster;
+                break;
+            case HUB_MANAGER:
+                key = keyHubManager;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid user role: " + role);
+        }
+
+
+
+
+        // key와 role 정보 로그 출력
+        logger.info("Selected key for role {}: {}", role, key);
+        return key;  // 마지막에 할당된 key를 반환합니다.
+    }
+
 
     // JWT 생성, 토큰 생성
     public String createToken(String username, UserRoleEnum role) {
         Date date = new Date();
         Key key = getKeyByRole(role);
+
+        logger.info("Creating token for username: {}, role: {}, key: {}", username, role, key);
 
         return BEARER_PREFIX +
                 Jwts.builder()
@@ -81,22 +132,6 @@ public class JwtUtil {
                         .setIssuedAt(date) // 발급일
                         .signWith(key, signatureAlgorithm) // 암호화 알고리즘
                         .compact();
-    }
-
-    // role에 따라 key 반환하는 메서드
-    private Key getKeyByRole(UserRoleEnum role) {
-        switch (role) {
-            case COMPANY:
-                return keyCompany;
-            case DELIVERY_PERSON:
-                return keyDeliveryPerson;
-            case MASTER:
-                return keyMaster;
-            case HUB_MANAGER:
-                return keyHubManager;
-            default:
-                throw new IllegalArgumentException("Invalid user role: " + role);
-        }
     }
 
 
@@ -124,23 +159,50 @@ public class JwtUtil {
         throw new NullPointerException("Not Found Token");
     }
 
-    // 토큰 검증
+    // JWT에서 역할을 추출하고 적절한 서명 키를 반환하는 메서드
+    private Key getKeyFromToken(String token) {
+        try {
+            logger.info("Extracting claims from token: {}", token);  // 토큰 확인
+
+            // 토큰을 서명 키 없이 파싱하려고 하면 문제가 발생하므로, 먼저 서명 키를 설정
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKeyResolver(new SigningKeyResolverAdapter() {
+                        @Override
+                        public Key resolveSigningKey(JwsHeader header, Claims claims) {
+                            // 역할에 따라 적절한 서명 키를 반환
+                            UserRoleEnum role = UserRoleEnum.valueOf(claims.get(JwtUtil.AUTHORIZATION_KEY, String.class));
+                            logger.info("Extracted role from token: {}", role);
+                            return getKeyByRole(role); // 역할에 맞는 서명 키 반환
+                        }
+                    })
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            UserRoleEnum role = UserRoleEnum.valueOf(claims.get(JwtUtil.AUTHORIZATION_KEY, String.class));
+            return getKeyByRole(role);
+        } catch (Exception e) {
+            logger.error("Error extracting key from token: " + e.getMessage()); // 예외 발생 시 전체 스택 트레이스를 기록
+            throw new RuntimeException("Failed to extract key from token", e);
+        }
+    }
+
+    // JWT 검증
     public boolean validateToken(String token, UserRoleEnum role) {
         try {
-            Jwts.parserBuilder().setSigningKey(getKeyByRole(role))
-                    .build().parseClaimsJws(token);
+            logger.info("Validating token: {}", token);  // 검증하려는 토큰 출력
+            // 토큰에서 역할에 맞는 키를 먼저 추출
+            Key key = getKeyFromToken(token);
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            log.info("Token validation successful");
+
             return true;
-        } catch (SecurityException | MalformedJwtException | SignatureException e) {
-            logger.error("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다.");
-        } catch (ExpiredJwtException e) {
-            logger.error("Expired JWT token, 만료된 JWT token 입니다.");
-        } catch (UnsupportedJwtException e) {
-            logger.error("Unsupported JWT token, 지원되지 않는 JWT 토큰 입니다.");
-        } catch (IllegalArgumentException e) {
-            logger.error("JWT claims is empty, 잘못된 JWT 토큰 입니다.");
+        } catch (Exception e) {
+            log.error("Token validation failed: {}", e.getMessage());
+            return false;
         }
-        return false;
     }
+
 
     // JWT 에서 사용자 정보 가져오기
     public Claims getUserInfoFromToken(String token, UserRoleEnum role) {
@@ -156,5 +218,49 @@ public class JwtUtil {
         }
         return null;
     }
+
+    // JWT 토큰에서 만료 시간 확인
+    public long getExpiration(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKeyResolver(new SigningKeyResolverAdapter() {
+                    @Override
+                    public Key resolveSigningKey(JwsHeader header, Claims claims) {
+                        UserRoleEnum role = UserRoleEnum.valueOf(claims.get(JwtUtil.AUTHORIZATION_KEY, String.class));
+                        return getKeyByRole(role);
+                    }
+                })
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        // 만료 시간 반환
+        return claims.getExpiration().getTime();
+    }
+
+    // 만료된 토큰인지 확인하는 로직
+    public boolean isTokenExpired(String token) {
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKeyResolver(new SigningKeyResolverAdapter() {
+                        @Override
+                        public Key resolveSigningKey(JwsHeader header, Claims claims) {
+                            UserRoleEnum role = UserRoleEnum.valueOf(claims.get(JwtUtil.AUTHORIZATION_KEY, String.class));
+                            return getKeyByRole(role);
+                        }
+                    })
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            Date expirationDate = claims.getExpiration();
+            return expirationDate.before(new Date()); // 현재 시간과 비교하여 만료 여부 반환
+        } catch (Exception e) {
+            logger.error("Error checking token expiration: {}", e.getMessage());
+            return true; // 오류가 발생하면 만료된 것으로 간주
+        }
+    }
+
+
+
 
 }

@@ -1,6 +1,5 @@
 package com._P.eureka.client.auth.infrastructure.jwt;
 
-
 import com._P.eureka.client.auth.domain.model.UserRoleEnum;
 import com._P.eureka.client.auth.infrastructure.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
@@ -38,13 +37,22 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
         // 2. 토큰이 존재할 경우
         if (StringUtils.hasText(tokenValue)) {
-            // JWT 토큰 substring
-            tokenValue = jwtUtil.substringToken(tokenValue);
-            log.info(tokenValue);
+            // 'auth' 헤더에서 역할 정보를 가져옴
+            String authHeader = req.getHeader("auth");
+            if (authHeader == null) {
+                log.error("Missing 'auth' header in request");
+                filterChain.doFilter(req, res);
+                return;
+            }
 
-            // HTTP 요청 헤더에서 "auth"라는 이름의 헤더값을 가져와 UserRoleEnum 값으로 변환
-            // 헤더에 "ADMIN"이 있다면 UserRoleEnum.ADMIN으로 변환
-            UserRoleEnum role =UserRoleEnum.valueOf(req.getHeader("auth"));
+            UserRoleEnum role;
+            try {
+                role = UserRoleEnum.valueOf(authHeader); // 역할 변환 시도
+            } catch (IllegalArgumentException e) {
+                log.error("Invalid role in 'auth' header: {}", authHeader);
+                filterChain.doFilter(req, res);
+                return;
+            }
 
             // jwt 토큰이 유효한지 검사 -> 토큰과 권한을 함께 사용하여 검증한다.
             if (!jwtUtil.validateToken(tokenValue, role)) {
@@ -63,17 +71,30 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 return;
             }
         }
-        
+
         // 필터 체인의 다음 필터를 호출하여 요청과 응답을 전달
         filterChain.doFilter(req, res);
+
+
     }
 
     // 인증 처리
     public void setAuthentication(String username) {
+//        SecurityContext context = SecurityContextHolder.createEmptyContext();
+//        Authentication authentication = createAuthentication(username);
+//        context.setAuthentication(authentication);
+//
+//        SecurityContextHolder.setContext(context);
+
         SecurityContext context = SecurityContextHolder.createEmptyContext();
-        Authentication authentication = createAuthentication(username);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+        // UserDetailsImpl이 사용되도록 설정
+        Authentication authentication =
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         context.setAuthentication(authentication);
 
+        // SecurityContext에 인증 정보 설정
         SecurityContextHolder.setContext(context);
     }
 
@@ -83,3 +104,4 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }
+

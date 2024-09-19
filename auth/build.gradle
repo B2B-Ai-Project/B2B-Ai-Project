@@ -54,6 +54,16 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+	// WebClient 사용을 위한 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// Redis 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+	// Redis 클라이언트
+	implementation 'io.lettuce.core:lettuce-core'
+
+
 }
 
 dependencyManagement {
