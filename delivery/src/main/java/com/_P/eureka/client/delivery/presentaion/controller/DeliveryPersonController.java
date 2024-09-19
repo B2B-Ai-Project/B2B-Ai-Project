@@ -15,12 +15,6 @@ import java.util.UUID;
 public class DeliveryPersonController {
   private final DeliveryPersonService deliveryPersonService;
 
-  @GetMapping("/test")
-  public String test(){
-    return "테스트 성공";
-  }
-
-
   //배송 담당자 생성
   @PostMapping("/create/{userId}")
   public DeliveryPersonResDto create(
@@ -56,7 +50,5 @@ public class DeliveryPersonController {
   ){
     return deliveryPersonService.search(page - 1, size, sortBy, isAsc);
   }
-
-
 
 }

@@ -5,6 +5,7 @@ import com._P.eureka.client.delivery.client.AuthClient;
 import com._P.eureka.client.delivery.client.ObjectClient;
 import com._P.eureka.client.delivery.doamin.common.DeliveryPersonRoleEnum;
 import com._P.eureka.client.delivery.doamin.model.DeliveryPerson;
+import com._P.eureka.client.delivery.doamin.model.Order;
 import com._P.eureka.client.delivery.doamin.repository.DeliveryPersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -57,7 +58,7 @@ public class DeliveryPersonService {
     DeliveryPerson user = deliveryPersonRepository.findById(userId).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 사용자 입니다."));
 
-    if (user.is_deleted()){
+    if (user.isDeleted()){
       throw new IllegalArgumentException("삭제된 사용자 입니다");
     }
 
@@ -77,8 +78,10 @@ public class DeliveryPersonService {
     Sort sort = Sort.by(direction, sortBy); // 정렬 방향으로 Sort 객체 생성
     Pageable pageable = PageRequest.of(page, size, sort);
 
-    Page<DeliveryPerson> deliveryPersonPage = deliveryPersonRepository.findAll(pageable);
+    // is_deleted가 false인 DeliveryPerson 목록만 조회
+    Page<DeliveryPerson> deliveryPersonPage = deliveryPersonRepository.findAllByIsDeletedFalse(pageable);
 
-    return deliveryPersonPage.map(DeliveryPersonResDto::new);
+    return deliveryPersonPage.map(DeliveryPersonResDto::fromEntity);
   }
+
 }
