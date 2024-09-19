@@ -32,8 +32,6 @@ public class OrderValidateService {
     if (!product.getCompany().getCompanyId().equals(request.getSupplierCompanyId())) {
       throw new IllegalArgumentException("공급업체가 일치하지 않습니다.");
     }
-    // 수량 확인 및 증감
-    product.decreaseQuantity(request.getQuantity());
     productRepository.save(product);
 
     return ResponseOrderDto.builder()
@@ -55,13 +53,5 @@ public class OrderValidateService {
     return company;
   }
 
-  // 주문 취소 시 해당 허브에 주문 수량 반환
-  public void returnQuantity(UUID productId, Integer quantity) {
-    Product product = productRepository.findById(productId).orElseThrow(() ->
-            new IllegalArgumentException("해당 제품이 존재하지 않습니다."));
-
-    product.returnQuantity(quantity);
-    productRepository.save(product);
-  }
 
 }

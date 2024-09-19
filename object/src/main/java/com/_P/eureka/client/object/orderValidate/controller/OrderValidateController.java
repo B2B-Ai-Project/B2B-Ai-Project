@@ -22,14 +22,4 @@ public class OrderValidateController {
     return orderValidateService.orderValidate(request);
   }
 
-  // 주문 취소 시 해당 허브에 주문 수량 반환
-  @GetMapping("/returnQuantity")
-  public void returnQuantity(
-          @RequestParam("productId") UUID productId,
-          @RequestParam("quantity") Integer quantity
-  ) {
-      orderValidateService.returnQuantity(productId, quantity);
-  }
-
-
 }

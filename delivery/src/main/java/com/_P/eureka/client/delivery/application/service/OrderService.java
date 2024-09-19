@@ -110,8 +110,6 @@ public class OrderService {
     // 배송의 상태가 대기중일 경우에만 삭제 가능
     if (delivery.getRole().equals(DeliveryRoleEnum.HUB_WAITING)){
       // "주문 -> 배송 -> 배송 경로 기록" 은 같은 라이프 사이클을 가진다.
-      // 주문 취소 시 해당 제품에 주문 수량 반환
-      objectClient.returnQuantity(order.getProductId(), order.getQuantity());
       order.setDeleted(true);
       delivery.setDeleted(true);
       deliveryRecord.setDeleted(true);
