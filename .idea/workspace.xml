@@ -5,28 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="060cdee2-9c80-4875-8e98-67c3677ce5f2" name="Changes" comment="#14 -feat : user api 구현, fix : JwtFilter수정">
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/dto/JwtResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/configuration/RedisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/_P/eureka/client/gateway/infrastructure/configuration/GatewayConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/_P/eureka/client/gateway/infrastructure/jwt/JwtAuthGlobalFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/auth/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/dto/AuthResponse.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/application/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/UserRoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/UserRoleEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/configuration/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/configuration/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/domain/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/jwt/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/security/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/security/UserDetailsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/infrastructure/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/presentation/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/presentation/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/presentation/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/_P/eureka/client/auth/presentation/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/object/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/product/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/product/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/presentaion/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/src/main/java/com/_P/eureka/client/delivery/presentaion/controller/DeliveryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,9 +53,43 @@
         <task path="$PROJECT_DIR$/gateway">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/delivery">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="delivery" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="delivery" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="delivery" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -117,12 +139,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build auth.executor": "Run",
+    "Gradle.Build delivery.executor": "Run",
     "Gradle.Build gateway.executor": "Run",
+    "Gradle.Build object.executor": "Run",
     "Gradle.Build server.executor": "Run",
     "Gradle.C:/B2B-Ai-Project/auth [compileJava].executor": "Run",
     "Gradle.C:/B2B-Ai-Project/gateway [compileJava].executor": "Run",
     "Gradle.C:/B2B-Ai-Project/gateway [dependencies].executor": "Run",
     "Gradle.auth [dependencies].executor": "Run",
+    "Gradle.delivery [compileJava].executor": "Run",
+    "Gradle.delivery [dependencies].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -130,6 +156,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.AuthApplication.executor": "Run",
+    "Spring Boot.DeliveryApplication.executor": "Run",
     "Spring Boot.GatewayApplication.executor": "Run",
     "Spring Boot.ObjectApplication.executor": "Debug",
     "Spring Boot.ServerApplication.executor": "Run",
@@ -143,7 +170,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
@@ -152,8 +179,8 @@
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
-      "postgresql",
-      "redis"
+      "redis",
+      "postgresql"
     ]
   }
 }]]></component>
@@ -169,33 +196,11 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.auth [dependencies]">
+  <component name="RunManager" selected="Gradle.C:/B2B-Ai-Project/auth [compileJava]">
     <configuration name="C:/B2B-Ai-Project/auth [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/auth" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="compileJava" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="C:/B2B-Ai-Project/gateway [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/gateway" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -258,6 +263,63 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="delivery [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/delivery" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="compileJava" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="delivery [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/delivery" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="object.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="object.main" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ai_main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com._P.eureka.client.ai.AiApplication" />
@@ -266,14 +328,14 @@
       </method>
     </configuration>
     <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="auth.main" />
+      <module name="auth_main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com._P.eureka.client.auth.AuthApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="DeliveryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="delivery_main" />
+      <module name="delivery.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com._P.eureka.client.delivery.DeliveryApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -287,7 +349,7 @@
       </method>
     </configuration>
     <configuration name="ObjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="object_main" />
+      <module name="object.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com._P.eureka.client.object.ObjectApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -308,9 +370,10 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Gradle.delivery [compileJava]" />
+      <item itemvalue="Gradle.delivery [dependencies]" />
       <item itemvalue="Gradle.auth [dependencies]" />
       <item itemvalue="Gradle.C:/B2B-Ai-Project/auth [compileJava]" />
-      <item itemvalue="Gradle.C:/B2B-Ai-Project/gateway [compileJava]" />
       <item itemvalue="Gradle.C:/B2B-Ai-Project/gateway [dependencies]" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.AiApplication" />
@@ -322,10 +385,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.C:/B2B-Ai-Project/auth [compileJava]" />
+        <item itemvalue="Gradle.delivery [compileJava]" />
+        <item itemvalue="Gradle.delivery [dependencies]" />
         <item itemvalue="Gradle.auth [dependencies]" />
         <item itemvalue="Gradle.C:/B2B-Ai-Project/gateway [dependencies]" />
-        <item itemvalue="Gradle.C:/B2B-Ai-Project/gateway [compileJava]" />
-        <item itemvalue="Gradle.C:/B2B-Ai-Project/auth [compileJava]" />
       </list>
     </recent_temporary>
   </component>
@@ -398,6 +462,17 @@
     <MESSAGE value="#6-feat: DeliveryPerson @AuthenticationPrincipal 주석처리" />
     <MESSAGE value="#7-feat: DeliveryPerson Search 구현" />
     <option name="LAST_COMMIT_MESSAGE" value="#7-feat: DeliveryPerson Search 구현" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/object/src/main/java/com/_P/eureka/client/object/orderValidate/controller/OrderValidateController.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
