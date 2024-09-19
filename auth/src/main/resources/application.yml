@@ -14,6 +14,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      username: myuser
+      password: mypassword
+
 server:
   port: 19093
 eureka:
@@ -27,4 +34,4 @@ key:
   hub_manager: "JCDyV/ev+0w3cFCngIENAb4fp0RR9Rgv2hdRkblR5IXZIJqrPm5O0ZYW6JQw7Fe33M62XOLfASuCaulhOFpr7w=="
   delivery_person: "xkCGI24PFPduZS9MBevxXFjl2Ku5FsDP3Z+zHfOjP5f0c93DM9u8Fh9dBm9z0bX8Iidpgx2IChp/J2sbAbSJPg=="
   master: "0mE0z5IT4fXZn7GRPONsz+Vmeev/SyYElEulSCxaQX5gwzPLg1BeAqdAT0t7ZkenMRG6qFGJozQpJAnV0wDM1A=="
-  hub_delivery: "bKAHEn//e7KHAot0RVVz2XfApMT4T03Pc2va19axqv4kw/sG0a0e0Z5aCLTRzZQHImhEVzKEyL9Ris5gDLksCA=="
+#  hub_delivery: "bKAHEn//e7KHAot0RVVz2XfApMT4T03Pc2va19axqv4kw/sG0a0e0Z5aCLTRzZQHImhEVzKEyL9Ris5gDLksCA=="
