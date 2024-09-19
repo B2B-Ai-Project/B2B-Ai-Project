@@ -3,6 +3,7 @@ package com._P.eureka.client.delivery.client;
 
 import com._P.eureka.client.delivery.application.dto.order.RequestOrderDto;
 import com._P.eureka.client.delivery.application.dto.order.ResponseOrderDto;
+import com._P.eureka.client.delivery.dto.HubResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,5 +22,9 @@ public interface ObjectClient {
   ResponseOrderDto validate(
           @RequestBody RequestOrderDto request
   );
+
+  // 허브 객체 받아오는 API
+  @GetMapping("/api/hub/{hubId}")
+  HubResponseDto getHubById(@PathVariable("hubId") UUID hubId);
 
 }

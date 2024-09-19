@@ -14,9 +14,9 @@ public class HubResponseDto {
 
     private String address;
 
-    private int latitude;
+    private Long latitude;
 
-    private int longitude;
+    private Long longitude;
 
     public HubResponseDto(Hub hub){
         this.hubId = hub.getHubId();
